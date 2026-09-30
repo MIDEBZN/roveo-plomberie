@@ -4,7 +4,7 @@ import ContactForm from '../components/ContactForm.astro';
 import { companyInfo } from '../data/companyInfo';
 
 const pageTitle = "Contact & Devis Gratuit Plomberie à Mons | Roveo";
-const pageDescription = "Contactez Roveo pour un dépannage d'urgence ou un devis de plomberie à Mons. Disponible 24h/24 et 7j/7 par téléphone au 065 98 12 34 ou formulaire en ligne.";
+const pageDescription = `Contactez Roveo pour un dépannage d'urgence ou un devis de plomberie à Mons. Disponible 24h/24 et 7j/7 par téléphone au ${companyInfo.phoneDisplay} ou formulaire en ligne.`;
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalPath="/contact" currentPage="/contact">

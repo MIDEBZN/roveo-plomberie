@@ -70,10 +70,13 @@ const currentYear = new Date().getFullYear();
           <strong>Adresse:</strong> {companyInfo.address.street}, {companyInfo.address.postalCode} {companyInfo.address.city}
         </p>
         <p class="footer-address">
+          <strong>Téléphone:</strong> {companyInfo.phoneDisplay}
+        </p>
+        <p class="footer-address">
           <strong>Email:</strong> {companyInfo.email}
         </p>
         <p class="footer-address">
-          <strong>BCE / TVA:</strong> {companyInfo.tvaNumber}
+          <strong>TVA:</strong> {companyInfo.tvaNumber}
         </p>
       </div>
     </div>
