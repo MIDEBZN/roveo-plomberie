@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://roveo-plomberie.vercel.app/sitemap.xml

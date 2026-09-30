@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { companyInfo } from '../data/companyInfo';
+
+const pageTitle = "Contact & Devis Gratuit Plomberie à Mons | Roveo";
+const pageDescription = "Contactez Roveo pour un dépannage d'urgence ou un devis de plomberie à Mons. Disponible 24h/24 et 7j/7 par téléphone au 065 98 12 34 ou formulaire en ligne.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/contact" currentPage="/contact">
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="container text-center">
+      <span class="badge badge-emergency" style="margin-bottom: 1rem;">Permanence 24h/24 et 7j/7</span>
+      <h1>Contact & demande de devis à Mons</h1>
+      <p class="contact-hero-desc">
+        Une question technique, une urgence à traiter ou un devis gratuit pour votre projet sanitaire ? Remplissez notre formulaire ou contactez directement notre équipe par téléphone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-main-grid">
+        <!-- Left: Form -->
+        <div class="contact-form-column">
+          <div class="form-wrapper-header">
+            <h2>Transmettre votre demande en ligne</h2>
+            <p>Réponse assurée sous 15 minutes pour les demandes urgentes et sous 2 heures pour les devis classiques.</p>
+          </div>
+          <ContactForm />
+        </div>
+
+        <!-- Right: Direct details & Emergency advice -->
+        <div class="contact-info-column">
+          <!-- Emergency Direct Call Card -->
+          <div class="emergency-callout-card">
+            <div class="urgent-head">
+              <span class="urgent-dot"></span>
+              <span class="urgent-title">Ligne d'urgence directe 24/7</span>
+            </div>
+            <p class="urgent-desc">
+              Pour toute fuite d'eau en cours, tuyauterie rompue ou WC débordant, ne perdez pas une minute et appelez notre numéro d'astreinte :
+            </p>
+            <a href={`tel:${companyInfo.phone}`} class="urgent-phone-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>{companyInfo.phoneDisplay}</span>
+            </a>
+            <span class="urgent-notice">Arrivée en 30 minutes garantie sur Mons</span>
+          </div>
+
+          <!-- Contact Coordinates -->
+          <div class="card coordinates-card">
+            <h3>Coordonnées de l'entreprise</h3>
+            
+            <div class="coord-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <div>
+                <strong>Atelier & Siège :</strong>
+                <span>{companyInfo.address.street}, {companyInfo.address.postalCode} {companyInfo.address.city} (Belgique)</span>
+              </div>
+            </div>
+
+            <div class="coord-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <div>
+                <strong>Email administratif :</strong>
+                <span>{companyInfo.email}</span>
+              </div>
+            </div>
+
+            <div class="coord-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <div>
+                <strong>Horaires d'ouverture :</strong>
+                <span>Urgences : 24h/24, 7j/7</span>
+                <span>Devis & bureau : Lun-Sam 08:00 à 19:00</span>
+              </div>
+            </div>
+
+            <div class="coord-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <div>
+                <strong>Identification légale :</strong>
+                <span>BCE : {companyInfo.bceNumber}</span>
+                <span>TVA : {companyInfo.tvaNumber}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency Tips Checklist -->
+          <div class="card tips-card">
+            <h3>Bons réflexes en cas de fuite d'eau</h3>
+            <ol class="tips-list">
+              <li>
+                <strong>Fermez la vanne d'arrêt générale :</strong> Elle se trouve généralement à proximité immédiate de votre compteur d'eau (cave ou entrée).
+              </li>
+              <li>
+                <strong>Coupez le disjoncteur électrique :</strong> Si l'eau s'infiltre à proximité d'un tableau électrique ou de prises de courant pour éviter tout risque de court-circuit.
+              </li>
+              <li>
+                <strong>Ouvrez un robinet en point bas :</strong> Cela permet de dépressuriser le circuit et de limiter l'eau s'échappant de la fissure.
+              </li>
+              <li>
+                <strong>Prenez des photos de l'incident :</strong> Elles serviront de justificatif auprès de votre assureur pour votre dossier de déclaration de sinistre.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-hero {
+    padding: 4.5rem 0 3.5rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-hero h1 {
+    max-width: 800px;
+    margin: 0 auto 1.25rem auto;
+  }
+
+  .contact-hero-desc {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .contact-main-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .form-wrapper-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-wrapper-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-wrapper-header p {
+    font-size: 0.95rem;
+  }
+
+  .contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Emergency Callout Card */
+  .emergency-callout-card {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    color: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 2.25rem;
+    box-shadow: 0 10px 25px rgba(234, 88, 12, 0.35);
+  }
+
+  .urgent-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .urgent-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border-radius: 50%;
+  }
+
+  .urgent-title {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #ffedd5;
+  }
+
+  .urgent-desc {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .urgent-phone-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #ffffff;
+    color: #c2410c;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 800;
+    font-size: 1.35rem;
+    font-family: var(--font-display);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .urgent-phone-link:hover {
+    transform: scale(1.02);
+    color: #9a3412;
+  }
+
+  .urgent-notice {
+    display: block;
+    text-align: center;
+    font-size: 0.825rem;
+    color: #ffedd5;
+    font-weight: 600;
+  }
+
+  /* Coordinates Card */
+  .coordinates-card h3 {
+    margin-bottom: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .coord-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .coord-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .coord-item svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .coord-item div {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+  }
+
+  .coord-item strong {
+    color: var(--color-primary);
+    margin-bottom: 0.15rem;
+  }
+
+  .coord-item span {
+    color: var(--color-text-muted);
+  }
+
+  /* Tips Card */
+  .tips-card h3 {
+    margin-bottom: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .tips-list {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .tips-list li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .tips-list strong {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 960px) {
+    .contact-main-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

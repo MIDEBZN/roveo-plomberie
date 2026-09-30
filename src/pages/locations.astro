@@ -1,0 +1,461 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { companyInfo } from '../data/companyInfo';
+import { locationsData } from '../data/locationsData';
+
+const pageTitle = "Zones d'Intervention Plomberie à Mons & Communes Voisines";
+const pageDescription = "Plombier disponible à Mons (7000), Cuesmes, Jemappes, Nimy, Ghlin, Havré, Frameries et zone frontalière française (Maubeuge). Arrivée en 30 minutes 24/7.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/locations" currentPage="/locations">
+  <!-- Locations Hero -->
+  <section class="locations-hero">
+    <div class="container text-center">
+      <span class="badge badge-accent" style="margin-bottom: 1rem;">Rayon d'action étendu</span>
+      <h1>Zones d'intervention plomberie à Mons & frontière</h1>
+      <p class="locations-hero-desc">
+        Grâce à nos véhicules d'intervention mobiles géolocalisés, nous assurons un dépannage rapide dans toute l'agglomération montoise et les communes frontalières françaises.
+      </p>
+      <div class="locations-hero-badges">
+        <span class="coverage-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Base opérationnelle : Mons Centre (7000)
+        </span>
+        <span class="coverage-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Délai moyen constaté : 25 à 35 minutes
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Search / Filter Section -->
+  <section class="section">
+    <div class="container">
+      <div class="search-filter-box">
+        <div class="filter-header">
+          <h3>Rechercher votre commune ou code postal</h3>
+          <p>Tapez le nom de votre localité pour vérifier instantanément la prise en charge et le délai moyen d'arrivée.</p>
+        </div>
+        <div class="filter-input-wrap">
+          <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="locationSearchInput"
+            class="form-input location-search-field"
+            placeholder="Ex : Mons, Cuesmes, 7000, 7012, Maubeuge..."
+            aria-label="Rechercher une commune desservie"
+          />
+        </div>
+      </div>
+
+      <!-- Locations Grid -->
+      <div class="locations-grid" id="locationsGrid">
+        {locationsData.map((loc) => (
+          <article class="card location-full-card" id={loc.id} data-name={loc.name.toLowerCase()} data-code={loc.postalCode.toLowerCase()}>
+            <div class="loc-card-header">
+              <div class="loc-header-left">
+                <span class="postal-tag">{loc.postalCode}</span>
+                <h2 class="loc-title">{loc.name}</h2>
+              </div>
+              <div class="loc-eta-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>{loc.responseTime}</span>
+              </div>
+            </div>
+
+            <p class="loc-card-desc">{loc.description}</p>
+
+            <div class="loc-coverage-details">
+              <span class="coverage-title">Secteurs & quartiers prioritaires :</span>
+              <ul class="coverage-list">
+                {loc.coverage.map((area) => (
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="loc-card-footer">
+              <span class="distance-metric">Distance : {loc.distance}</span>
+              <a href={`/contact?location=${encodeURIComponent(loc.name)}`} class="btn btn-primary btn-sm">
+                Intervention à {loc.name.split(' ')[0]}
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div id="noResultsMsg" class="no-results-panel" style="display: none;">
+        <h3>Votre commune ne figure pas dans cette liste ?</h3>
+        <p>Nous intervenons dans un rayon de 30 km autour de Mons. Appelez notre régulation au <strong>{companyInfo.phoneDisplay}</strong> pour confirmer notre disponibilité immédiate.</p>
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency">
+          Vérifier par téléphone
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Border Explanation Section -->
+  <section class="section section-slate">
+    <div class="container">
+      <div class="cross-border-box">
+        <div class="cross-border-content">
+          <span class="badge badge-accent">Service Transfrontalier Franco-Belge</span>
+          <h2>Vous résidez dans le Nord de la France (59) ?</h2>
+          <p>
+            Situé à moins de 15 minutes des postes frontières de Maubeuge et Bavay, Roveo propose ses services de dépannage de plomberie et recherche de fuite aux particuliers et entreprises françaises frontalières.
+          </p>
+          <ul class="cross-border-benefits">
+            <li>Facturation bilingue et conforme aux exigences des assurances françaises (dégât des eaux).</li>
+            <li>Aucun frais de douane ni supplément kilométrique injustifié.</li>
+            <li>Techniciens familiers des normes sanitaires et diamètres de plomberie français et belges.</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="/contact?location=Zone+France" class="btn btn-primary">
+              Demande d'intervention secteur France
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Call CTA -->
+  <section class="section section-dark">
+    <div class="container text-center">
+      <h2>Besoin d'un plombier en urgence dans votre commune ?</h2>
+      <p style="margin-bottom: 2rem;">Notre camion atelier le plus proche est prêt à démarrer vers votre domicile.</p>
+      <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency btn-hero">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        Appeler Roveo : {companyInfo.phoneDisplay}
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('locationSearchInput') as HTMLInputElement | null;
+    const cards = document.querySelectorAll('.location-full-card') as NodeListOf<HTMLElement>;
+    const noResults = document.getElementById('noResultsMsg');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const name = card.getAttribute('data-name') || '';
+          const code = card.getAttribute('data-code') || '';
+
+          if (name.includes(query) || code.includes(query)) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .locations-hero {
+    padding: 4.5rem 0 3.5rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .locations-hero h1 {
+    max-width: 800px;
+    margin: 0 auto 1.25rem auto;
+  }
+
+  .locations-hero-desc {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .locations-hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .coverage-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .coverage-pill svg {
+    color: var(--color-accent);
+  }
+
+  /* Search Box */
+  .search-filter-box {
+    background-color: var(--color-bg-slate);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 2.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .filter-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-header h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-input-wrap {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 1.25rem;
+    transform: translateY(-50%);
+    color: var(--color-text-light);
+    pointer-events: none;
+  }
+
+  .location-search-field {
+    padding-left: 3.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.05rem;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Locations Grid */
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .location-full-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .loc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .loc-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .postal-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    background-color: var(--color-accent-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    align-self: flex-start;
+  }
+
+  .loc-title {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+  }
+
+  .loc-eta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #ecfdf5;
+    color: #047857;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    white-space: nowrap;
+  }
+
+  .loc-card-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .loc-coverage-details {
+    background-color: var(--color-bg-slate);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .coverage-title {
+    display: block;
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .coverage-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .coverage-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+  }
+
+  .coverage-list svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .loc-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .distance-metric {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  /* No results */
+  .no-results-panel {
+    background: #ffffff;
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    text-align: center;
+    max-width: 650px;
+    margin: 2rem auto 0 auto;
+  }
+
+  .no-results-panel h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .no-results-panel p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Cross border */
+  .cross-border-box {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 3rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cross-border-content h2 {
+    margin: 1rem 0;
+  }
+
+  .cross-border-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .cross-border-benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cross-border-benefits li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+  }
+
+  .cross-border-benefits li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 860px) {
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
+    .coverage-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

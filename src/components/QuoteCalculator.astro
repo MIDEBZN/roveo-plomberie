@@ -1,0 +1,301 @@
+---
+import { companyInfo } from '../data/companyInfo';
+---
+
+<div class="calculator-card" id="estimateur">
+  <div class="calculator-header">
+    <span class="calc-badge">Simulateur en ligne</span>
+    <h3 class="calc-title">Estimez le tarif de votre intervention</h3>
+    <p class="calc-subtitle">Transparence totale: obtenez une fourchette de prix réaliste pour vos travaux à Mons avant l'arrivée du technicien.</p>
+  </div>
+
+  <form class="calc-form" id="quoteCalculatorForm" onsubmit="event.preventDefault();">
+    <!-- Etape 1 : Type de panne -->
+    <div class="calc-step">
+      <label class="calc-label" for="calcService">1. Type d'intervention requise :</label>
+      <select id="calcService" class="form-select" required>
+        <option value="fuite" data-base="89" data-name="Réparation de fuite d'eau">Recherche ou réparation de fuite d'eau</option>
+        <option value="debouchage" data-base="95" data-name="Débouchage de canalisation">Débouchage WC, évier ou canalisation</option>
+        <option value="chauffe-eau" data-base="120" data-name="Dépannage ou détartrage chauffe-eau">Chauffe-eau / Boiler (dépannage ou entretien)</option>
+        <option value="wc" data-base="75" data-name="Remplacement mécanisme de chasse ou robinet">Robinetterie / Chasse d'eau défaillante</option>
+        <option value="renovation" data-base="450" data-name="Projet de rénovation salle de bain">Rénovation complète ou remplacement sanitaire</option>
+      </select>
+    </div>
+
+    <!-- Etape 2 : Degré d'urgence -->
+    <div class="calc-step">
+      <label class="calc-label">2. Délai d'intervention souhaité :</label>
+      <div class="radio-grid">
+        <label class="radio-card">
+          <input type="radio" name="calcUrgency" value="urgent" data-multiplier="1.3" checked />
+          <span class="radio-content">
+            <strong>Urgence absolue (30 min)</strong>
+            <small>Disponible 24/7, nuit & week-end</small>
+          </span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="calcUrgency" value="today" data-multiplier="1.1" />
+          <span class="radio-content">
+            <strong>Dans la journée</strong>
+            <small>Intervention en heures ouvrées</small>
+          </span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="calcUrgency" value="week" data-multiplier="1.0" />
+          <span class="radio-content">
+            <strong>Rendez-vous planifié</strong>
+            <small>Sous 2 à 5 jours ouvrés</small>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Etape 3 : Localisation dans le Grand Mons -->
+    <div class="calc-step">
+      <label class="calc-label" for="calcArea">3. Votre commune ou secteur :</label>
+      <select id="calcArea" class="form-select">
+        <option value="mons-centre">Mons Centre (7000)</option>
+        <option value="cuesmes">Cuesmes / Jemappes (7033, 7012)</option>
+        <option value="nimy-ghlin">Nimy / Ghlin / Havré (7020, 7011, 7021)</option>
+        <option value="frameries">Frameries / Borinage (7080, 7300)</option>
+        <option value="france">Frontière France (Maubeuge, Bavay 59)</option>
+      </select>
+    </div>
+
+    <!-- Result Box -->
+    <div class="calc-result-box">
+      <div class="result-price-wrapper">
+        <span class="result-label">Fourchette indicative TTC :</span>
+        <div class="price-display" id="calculatedPrice">115 € à 160 €</div>
+        <p class="price-subtext">Comprend : déplacement à Mons, diagnostic sur site et première heure de main-d'œuvre.</p>
+      </div>
+
+      <div class="result-actions">
+        <a href="/contact" id="btnBookEstimate" class="btn btn-primary btn-block">
+          Réserver cette intervention
+        </a>
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency btn-block">
+          Appeler le {companyInfo.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function updatePrice() {
+    const serviceSelect = document.getElementById('calcService') as HTMLSelectElement | null;
+    const urgencyInputs = document.querySelectorAll('input[name="calcUrgency"]:checked') as NodeListOf<HTMLInputElement>;
+    const priceDisplay = document.getElementById('calculatedPrice');
+    const bookBtn = document.getElementById('btnBookEstimate') as HTMLAnchorElement | null;
+
+    if (!serviceSelect || !urgencyInputs.length || !priceDisplay) return;
+
+    const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+    const basePrice = parseFloat(selectedOption.getAttribute('data-base') || '89');
+    const multiplier = parseFloat(urgencyInputs[0].getAttribute('data-multiplier') || '1.0');
+
+    let minPrice: number;
+    let maxPrice: number;
+
+    if (basePrice >= 400) {
+      // Renovation project
+      minPrice = Math.round(basePrice * multiplier);
+      maxPrice = Math.round(minPrice * 1.6);
+      priceDisplay.textContent = `${minPrice} € à ${maxPrice} € (sur devis précis)`;
+    } else {
+      minPrice = Math.round(basePrice * multiplier);
+      maxPrice = Math.round(minPrice * 1.35);
+      priceDisplay.textContent = `${minPrice} € à ${maxPrice} €`;
+    }
+
+    if (bookBtn) {
+      const serviceName = encodeURIComponent(selectedOption.getAttribute('data-name') || 'Dépannage plomberie');
+      const urgencyVal = encodeURIComponent(urgencyInputs[0].value);
+      bookBtn.href = `/contact?service=${serviceName}&urgency=${urgencyVal}&estMin=${minPrice}&estMax=${maxPrice}`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceSelect = document.getElementById('calcService');
+    const urgencyRadios = document.querySelectorAll('input[name="calcUrgency"]');
+    const areaSelect = document.getElementById('calcArea');
+
+    if (serviceSelect) serviceSelect.addEventListener('change', updatePrice);
+    if (areaSelect) areaSelect.addEventListener('change', updatePrice);
+    urgencyRadios.forEach((r) => r.addEventListener('change', updatePrice));
+
+    updatePrice();
+  });
+</script>
+
+<style>
+  .calculator-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calculator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0284c7 0%, #ea580c 100%);
+  }
+
+  .calculator-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .calc-badge {
+    display: inline-block;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.75rem;
+  }
+
+  .calc-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .calc-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .calc-step {
+    margin-bottom: 1.75rem;
+  }
+
+  .calc-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.65rem;
+  }
+
+  .radio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    border: 1px solid var(--color-border);
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.2s ease;
+  }
+
+  .radio-card:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-bg-slate);
+  }
+
+  .radio-card input {
+    margin-top: 0.25rem;
+    accent-color: var(--color-accent);
+  }
+
+  .radio-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .radio-content strong {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+  }
+
+  .radio-content small {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .calc-result-box {
+    background: linear-gradient(135deg, #0b1528 0%, #162444 100%);
+    color: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .result-price-wrapper {
+    text-align: center;
+  }
+
+  .result-label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-display {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-subtext {
+    font-size: 0.825rem;
+    color: #cbd5e1;
+    margin: 0;
+  }
+
+  .result-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .calculator-card {
+      padding: 1.5rem;
+    }
+    .radio-grid {
+      grid-template-columns: 1fr;
+    }
+    .result-actions {
+      grid-template-columns: 1fr;
+    }
+    .price-display {
+      font-size: 1.75rem;
+    }
+  }
+</style>

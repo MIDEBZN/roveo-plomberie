@@ -1,0 +1,370 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { companyInfo } from '../data/companyInfo';
+
+const pageTitle = "À Propos de Roveo Plomberie Mons | Notre Histoire & Engagements";
+const pageDescription = "Découvrez l'histoire de Roveo, entreprise artisanale de plomberie et sanitaire à Mons. Équipe certifiée, matériel de pointe, devis transparent et garantie décennale.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/about" currentPage="/about">
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="container text-center">
+      <span class="badge badge-accent" style="margin-bottom: 1rem;">Artisanat & Rigueur Technique</span>
+      <h1>À propos de Roveo : votre artisan plombier à Mons</h1>
+      <p class="about-hero-desc">
+        Fondée sur des valeurs d'honnêteté, de réactivité et d'excellence technique, l'entreprise Roveo met son savoir-faire au service des particuliers, copropriétés et commerces du bassin montois.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story & Philosophy -->
+  <section class="section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content">
+          <span class="subtitle">Notre vocation</span>
+          <h2>Redéfinir le métier de plombier avec transparence et modernité</h2>
+          <p>
+            Face aux pratiques douteuses et aux majorations tarifaires imprévues trop souvent observées dans le secteur du dépannage d'urgence, Roveo a été créée avec un objectif clair : offrir aux habitants de Mons et des communes limitrophes un service de plomberie digne de confiance.
+          </p>
+          <p>
+            Nous intervenons avec la rigueur d'ingénieurs et la proximité d'artisans locaux. Dès votre premier appel, vous échangez avec un interlocuteur technique qualifié capable d'évaluer la gravité du problème et de mobiliser le camion atelier adapté.
+          </p>
+
+          <div class="commitments-list">
+            <div class="commit-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div>
+                <strong>Devis systématique avant travaux :</strong>
+                <span>Vous connaissez le tarif exact avant le moindre coup de clé à molette.</span>
+              </div>
+            </div>
+            <div class="commit-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div>
+                <strong>Équipements certifiés :</strong>
+                <span>Nous installons exclusivement des marques réputées garanties pièces et main-d'œuvre.</span>
+              </div>
+            </div>
+            <div class="commit-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div>
+                <strong>Disponibilité réelle 24/7 :</strong>
+                <span>Une véritable astreinte opérationnelle à Mons pour les urgences nocturnes et de week-end.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-side-card">
+          <div class="identity-card">
+            <h3>Fiche d'identité de l'entreprise</h3>
+            <div class="id-row">
+              <span class="id-label">Dénomination :</span>
+              <span class="id-val">Roveo Plomberie & Sanitaire</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Siège social :</span>
+              <span class="id-val">{companyInfo.address.street}, {companyInfo.address.postalCode} {companyInfo.address.city}</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Zone de couverture :</span>
+              <span class="id-val">Grand Mons, Borinage & Nord (France)</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Numéro BCE :</span>
+              <span class="id-val">{companyInfo.bceNumber}</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Numéro de TVA :</span>
+              <span class="id-val">{companyInfo.tvaNumber}</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Assurance :</span>
+              <span class="id-val">RC Décennale & Professionnelle AXA</span>
+            </div>
+            <div class="id-row">
+              <span class="id-label">Agréments :</span>
+              <span class="id-val">Installateur sanitaire & chauffagiste agréé</span>
+            </div>
+
+            <div class="identity-cta">
+              <a href="/contact" class="btn btn-primary btn-block">Contacter l'atelier</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Equipment Showcase -->
+  <section class="section section-slate">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Parc matériel de pointe</span>
+        <h2>Notre technologie au service de votre installation</h2>
+        <p>Pour intervenir rapidement sans endommager vos cloisons, sols ou carrelages, Roveo investit dans un outillage de détection et débouchage de nouvelle génération.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card equipment-card">
+          <div class="equip-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <h3>Caméra thermique infrarouge</h3>
+          <p>Permet de cartographier la température des murs et dalles de béton pour repérer immédiatement l'échappement d'eau chaude ou froide sans ouvrir les parois.</p>
+        </div>
+
+        <div class="card equipment-card">
+          <div class="equip-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+            </svg>
+          </div>
+          <h3>Corrélateur électroacoustique</h3>
+          <p>Microphones de sol haute sensibilité captant la vibration exacte générée par une fuite sous pression dans une canalisation enterrée ou encastrée.</p>
+        </div>
+
+        <div class="card equipment-card">
+          <div class="equip-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <h3>Hydrocureuse haute pression mobile</h3>
+          <p>Pression modulable jusqu'à 200 bars pour désagréger les bouchons les plus tenaces dans les égouts et colonnes sans risque de fissuration des PVC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values & Standards -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Valeurs d'artisan</span>
+        <h2>Les 4 piliers de notre engagement client</h2>
+        <p>Chaque membre de l'équipe Roveo respecte une charte déontologique stricte.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="value-item">
+          <span class="value-num">01</span>
+          <h4>Clarté des explications</h4>
+          <p>Nous vous expliquons la cause technique de la panne de façon pédagogique, sans vocabulaire obscur.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">02</span>
+          <h4>Propreté du chantier</h4>
+          <p>Protection des revêtements de sol, bâchage si nécessaire et nettoyage complet après achèvement des travaux.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">03</span>
+          <h4>Respect des normes belges & européennes</h4>
+          <p>Raccordements sanitaires étanches, dimensionnement conforme des débits et respect des règles de sécurité gaz.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-num">04</span>
+          <h4>Accompagnement assurances</h4>
+          <p>Rédaction de rapports d'expertise clairs pour vous assurer un remboursement rapide par votre assurance habitation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section-dark">
+    <div class="container text-center">
+      <h2>Besoin de l'intervention d'un artisan plombier à Mons ?</h2>
+      <p style="margin-bottom: 2rem;">Contactez notre équipe pour un conseil gratuit ou une intervention d'urgence.</p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency">
+          Appeler le {companyInfo.phoneDisplay}
+        </a>
+        <a href="/contact" class="btn btn-outline-white">
+          Formulaire de contact
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero {
+    padding: 4.5rem 0 3.5rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-hero h1 {
+    max-width: 800px;
+    margin: 0 auto 1.25rem auto;
+  }
+
+  .about-hero-desc {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .story-content h2 {
+    margin: 0.75rem 0 1.25rem 0;
+  }
+
+  .story-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .commitments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .commit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: var(--color-bg-slate);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .commit-item svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .commit-item div {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+  }
+
+  .commit-item strong {
+    color: var(--color-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  /* Identity Card */
+  .identity-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .identity-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .id-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 0.5rem;
+  }
+
+  .id-label {
+    color: var(--color-text-muted);
+  }
+
+  .id-val {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .identity-cta {
+    margin-top: 1.5rem;
+  }
+
+  /* Equipment Card */
+  .equipment-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .equip-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .equipment-card h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .equipment-card p {
+    font-size: 0.925rem;
+    line-height: 1.5;
+  }
+
+  /* Value Item */
+  .value-item {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 1.75rem;
+    position: relative;
+  }
+
+  .value-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-item h4 {
+    margin-bottom: 0.5rem;
+  }
+
+  .value-item p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 960px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

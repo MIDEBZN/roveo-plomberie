@@ -1,0 +1,454 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { companyInfo } from '../data/companyInfo';
+import { servicesData } from '../data/servicesData';
+
+const pageTitle = "Services de Plomberie & Dépannage Sanitaire à Mons";
+const pageDescription = "Prestations complètes de plomberie à Mons: dépannage d'urgence 24/7, recherche de fuite d'eau, débouchage haute pression, remplacement chauffe-eau et salle de bain.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/services" currentPage="/services">
+  <!-- Services Header -->
+  <section class="services-hero">
+    <div class="container text-center">
+      <span class="badge badge-accent" style="margin-bottom: 1rem;">Savoir-faire artisanal certifié</span>
+      <h1>Nos services de plomberie & dépannage à Mons</h1>
+      <p class="services-hero-desc">
+        Que ce soit pour une urgence absolue en pleine nuit ou un projet d'aménagement sanitaire complet, Roveo vous garantit des interventions conformes aux règles de l'art, avec du matériel durable et une tarification transparente.
+      </p>
+      <div class="services-hero-cta">
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Urgence directe: {companyInfo.phoneDisplay}
+        </a>
+        <a href="/contact" class="btn btn-secondary">Demander un devis en ligne</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Service List -->
+  <section class="section">
+    <div class="container">
+      <div class="services-detailed-list">
+        {servicesData.map((service, index) => (
+          <article class="service-detail-item" id={service.slug}>
+            <div class={`service-detail-grid ${index % 2 === 1 ? 'reverse-grid' : ''}`}>
+              <!-- Content -->
+              <div class="service-detail-info">
+                <div class="service-detail-top">
+                  <span class="service-index">0{index + 1}</span>
+                  {service.emergency && (
+                    <span class="badge badge-emergency">Urgence 24h/7j</span>
+                  )}
+                  <span class="badge badge-accent">{service.delay}</span>
+                </div>
+
+                <h2>{service.title}</h2>
+                <p class="service-full-text">{service.fullDescription}</p>
+
+                <div class="service-features-list">
+                  <h4>Inclus dans notre prestation :</h4>
+                  <ul>
+                    {service.features.map((feature) => (
+                      <li>
+                        <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="service-pricing-row">
+                  <div class="price-callout">
+                    <span class="price-prefix">Tarif indicatif :</span>
+                    <strong class="price-val">{service.priceFrom}</strong>
+                  </div>
+                  <div class="service-action-buttons">
+                    <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="btn btn-primary btn-sm">
+                      Réserver cette intervention
+                    </a>
+                    <a href={`tel:${companyInfo.phone}`} class="btn btn-secondary btn-sm">
+                      Appel rapide
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual Card -->
+              <div class="service-detail-visual">
+                <div class="visual-panel">
+                  <div class="visual-badge-corner">Intervention certifiée</div>
+                  <div class="visual-icon-container">
+                    {service.icon === 'zap' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    )}
+                    {service.icon === 'search' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    )}
+                    {service.icon === 'droplet' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                      </svg>
+                    )}
+                    {service.icon === 'flame' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                      </svg>
+                    )}
+                    {service.icon === 'home' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                      </svg>
+                    )}
+                    {service.icon === 'wrench' && (
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                      </svg>
+                    )}
+                  </div>
+                  <div class="visual-highlights">
+                    <div class="visual-item">
+                      <span class="v-label">Agrément :</span>
+                      <span class="v-val">Région Wallonne & France</span>
+                    </div>
+                    <div class="visual-item">
+                      <span class="v-label">Garantie :</span>
+                      <span class="v-val">Décennale & Pièces</span>
+                    </div>
+                    <div class="visual-item">
+                      <span class="v-label">Disponibilité :</span>
+                      <span class="v-val">Grand Mons 7000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Workflow -->
+  <section class="section section-slate">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Méthodologie</span>
+        <h2>Comment se déroule notre intervention</h2>
+        <p>Un déroulement simple, rigoureux et sans perte de temps pour résoudre votre problème de plomberie.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card process-card">
+          <div class="step-badge">Étape 1</div>
+          <h3>Appel ou Demande</h3>
+          <p>Vous nous contactez par téléphone ou formulaire. Nous qualifions la panne et vous indiquons l'heure exacte d'arrivée.</p>
+        </div>
+        <div class="card process-card">
+          <div class="step-badge">Étape 2</div>
+          <h3>Diagnostic & Devis</h3>
+          <p>Sur place, le plombier inspecte l'installation et établit un devis clair. Aucun travail n'est engagé sans votre accord préalable.</p>
+        </div>
+        <div class="card process-card">
+          <div class="step-badge">Étape 3</div>
+          <h3>Réparation certifiée</h3>
+          <p>L'intervention est menée avec un outillage professionnel et des pièces d'origine certifiées pour garantir la longévité du réseau.</p>
+        </div>
+        <div class="card process-card">
+          <div class="step-badge">Étape 4</div>
+          <h3>Rapport & Facture</h3>
+          <p>Contrôle de mise en pression, nettoyage du chantier et remise immédiate de la facture détaillée conforme aux normes assurances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section section-dark">
+    <div class="container text-center">
+      <h2>Un doute sur une fuite ou un équipement à changer à Mons ?</h2>
+      <p style="margin-bottom: 2rem;">Prenez conseil auprès d'un artisan plombier disponible immédiatement.</p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency">
+          Appeler le {companyInfo.phoneDisplay}
+        </a>
+        <a href="/contact" class="btn btn-outline-white">
+          Demander une estimation écrite
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .services-hero {
+    padding: 4.5rem 0 3.5rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-hero h1 {
+    max-width: 800px;
+    margin: 0 auto 1.25rem auto;
+  }
+
+  .services-hero-desc {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .services-hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .services-detailed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .service-detail-item {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 3rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+
+  .service-detail-item:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: #cbd5e1;
+  }
+
+  .service-detail-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .service-detail-grid.reverse-grid {
+    grid-template-columns: 1fr 1.35fr;
+  }
+
+  .service-detail-grid.reverse-grid .service-detail-info {
+    order: 2;
+  }
+
+  .service-detail-grid.reverse-grid .service-detail-visual {
+    order: 1;
+  }
+
+  .service-detail-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-index {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--color-accent);
+  }
+
+  .service-detail-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-full-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features-list {
+    background-color: var(--color-bg-slate);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-features-list h4 {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .service-features-list ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .service-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.925rem;
+    color: var(--color-text-main);
+  }
+
+  .check-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .service-pricing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .price-callout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-prefix {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+  }
+
+  .price-val {
+    font-size: 1.6rem;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+  }
+
+  .service-action-buttons {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  /* Visual Panel */
+  .visual-panel {
+    background: linear-gradient(135deg, #0b1528 0%, #162444 100%);
+    border-radius: var(--radius-lg);
+    color: #ffffff;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-shadow: var(--shadow-md);
+  }
+
+  .visual-badge-corner {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(2, 132, 199, 0.3);
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+  }
+
+  .visual-icon-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(2, 132, 199, 0.15);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0 2rem 0;
+  }
+
+  .visual-highlights {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    text-align: left;
+  }
+
+  .visual-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+
+  .v-label {
+    color: #94a3b8;
+  }
+
+  .v-val {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Process Cards */
+  .process-card {
+    position: relative;
+  }
+
+  .step-badge {
+    display: inline-block;
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .process-card h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .process-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 960px) {
+    .service-detail-grid,
+    .service-detail-grid.reverse-grid {
+      grid-template-columns: 1fr;
+    }
+    .service-detail-grid.reverse-grid .service-detail-info {
+      order: 1;
+    }
+    .service-detail-grid.reverse-grid .service-detail-visual {
+      order: 2;
+    }
+    .service-detail-item {
+      padding: 1.75rem;
+    }
+  }
+</style>

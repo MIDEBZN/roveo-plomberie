@@ -1,0 +1,922 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCalculator from '../components/QuoteCalculator.astro';
+import { companyInfo } from '../data/companyInfo';
+import { servicesData } from '../data/servicesData';
+import { locationsData } from '../data/locationsData';
+import { reviewsData } from '../data/reviewsData';
+
+const pageTitle = "Artisan Plombier Chauffagiste à Mons | Dépannage 24/7";
+const pageDescription = "Plombier d'urgence à Mons et environs. Intervention en 30 minutes pour fuite d'eau, débouchage de canalisation, chauffe-eau et sanitaires. Devis gratuit et agréé assurances.";
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/" currentPage="/">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badges-row">
+          <span class="badge badge-emergency">Intervention d'urgence 24/7</span>
+          <span class="badge badge-accent">Grand Mons & Zone Frontalière</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Dépannage plomberie d'urgence & installations sanitaires à Mons
+        </h1>
+        
+        <p class="hero-description">
+          Une fuite d'eau soudaine, une canalisation bouchée ou un chauffe-eau en panne ? Votre artisan plombier certifié intervient en 30 minutes à Mons et ses communes périphériques avec devis préalable et garantie décennale.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency btn-hero">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Urgence immédiate: {companyInfo.phoneDisplay}</span>
+          </a>
+          <a href="#estimateur" class="btn btn-secondary btn-hero">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+              <line x1="8" y1="6" x2="16" y2="6"></line>
+              <line x1="16" y1="14" x2="16" y2="18"></line>
+              <path d="M16 10h.01"></path>
+              <path d="M12 10h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M8 14h.01"></path>
+              <path d="M12 18h.01"></path>
+              <path d="M8 18h.01"></path>
+            </svg>
+            <span>Simuler mon devis gratuit</span>
+          </a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Arrivée en 30 min</span>
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>Agréé Assurances</span>
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Devis sans surprise</span>
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>4.9/5 sur 120+ avis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Stats Card -->
+      <div class="hero-stats-panel">
+        <div class="stats-card-main">
+          <div class="stats-header">
+            <div class="pulse-indicator">
+              <span class="pulse-dot"></span>
+              <span class="pulse-text">Équipe de garde opérationnelle</span>
+            </div>
+            <span class="stats-zone">Mons & Borinage</span>
+          </div>
+          
+          <div class="stats-metrics-grid">
+            <div class="metric-box">
+              <span class="metric-num">30 min</span>
+              <span class="metric-desc">Délai moyen d'arrivée sur site</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">100%</span>
+              <span class="metric-desc">Devis transparent avant travaux</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">12 ans</span>
+              <span class="metric-desc">D'expérience terrain certifiée</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">10 ans</span>
+              <span class="metric-desc">Garantie décennale pièces & main-d'œuvre</span>
+            </div>
+          </div>
+
+          <div class="stats-urgent-callout">
+            <div class="urgent-callout-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="urgent-callout-text">
+              <strong>Dégât des eaux en cours ?</strong>
+              <span>Appelez le <strong>{companyInfo.phoneDisplay}</strong> pour un départ prioritaire.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Notice Strip -->
+  <section class="emergency-strip">
+    <div class="container emergency-strip-container">
+      <div class="strip-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        <span>Urgence fuite d'eau majeure : coupure et sécurisation immédiate</span>
+      </div>
+      <div class="strip-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        <span>Tarifs fixes annoncés à l'avance sans majoration dissimulée</span>
+      </div>
+      <div class="strip-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Agrément professionnel et facturation aux normes assurances</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview Section -->
+  <section class="section section-slate" id="services-apercu">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Nos prestations certifiées</span>
+        <h2>Services de plomberie et sanitaire à Mons</h2>
+        <p>Du dépannage minute à la refonte complète de votre réseau d'eau, découvrez nos interventions réalisées par des artisans qualifiés.</p>
+      </div>
+
+      <div class="grid-3">
+        {servicesData.map((service) => (
+          <div class="card service-preview-card">
+            <div class="service-card-header">
+              <div class="service-icon-box">
+                {service.icon === 'zap' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                )}
+                {service.icon === 'search' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                )}
+                {service.icon === 'droplet' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                  </svg>
+                )}
+                {service.icon === 'flame' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                  </svg>
+                )}
+                {service.icon === 'home' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                )}
+                {service.icon === 'wrench' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                  </svg>
+                )}
+              </div>
+              {service.emergency && (
+                <span class="badge badge-emergency">Urgence 24/7</span>
+              )}
+            </div>
+
+            <h3 class="service-card-title">{service.title}</h3>
+            <p class="service-card-desc">{service.shortDescription}</p>
+
+            <div class="service-card-meta">
+              <div class="meta-row">
+                <span class="meta-label">Tarif à partir de :</span>
+                <span class="meta-value font-bold text-accent">{service.priceFrom}</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Délai indicatif :</span>
+                <span class="meta-value">{service.delay}</span>
+              </div>
+            </div>
+
+            <a href={`/services#${service.slug}`} class="service-link">
+              <span>Voir les détails de l'intervention</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="/services" class="btn btn-primary">
+          Découvrir tous nos services de plomberie
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Quote Simulator Section -->
+  <section class="section" id="estimateur">
+    <div class="container">
+      <QuoteCalculator />
+    </div>
+  </section>
+
+  <!-- Why Choose Roveo -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle text-accent">Pourquoi choisir Roveo</span>
+        <h2>Un service d'artisan local, rigoureux et transparent</h2>
+        <p>Nous savons combien une urgence de plomberie peut être anxiogène. C'est pourquoi nous privilégions la clarté, l'honnêteté et la réactivité technique.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h4>Intervention en 30 min</h4>
+          <p>Basés au cœur de Mons, nos véhicules ateliers sillonnent le Hainaut en continu pour intervenir dès votre appel.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h4>Zéro mauvaise surprise</h4>
+          <p>Chaque prestation fait l'objet d'un devis préalable signé. Le montant convenu est le montant facturé, sans surcoût caché.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <h4>Outillage de pointe</h4>
+          <p>Caméras d'inspection endoscopiques, corrélateurs acoustiques et hydrocureuses haute pression pour cibler la panne sans détériorer vos sols.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h4>Plombiers certifiés</h4>
+          <p>Artisans diplômés bénéficiant de garanties décennales et assurances en responsabilité civile professionnelle pour votre sérénité totale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Teaser -->
+  <section class="section section-slate">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Zone d'intervention</span>
+        <h2>Plombier à Mons et dans toute la région frontalière</h2>
+        <p>Roveo intervient dans l'ensemble des communes du Grand Mons ainsi que pour nos voisins français frontaliers du département du Nord.</p>
+      </div>
+
+      <div class="grid-3">
+        {locationsData.slice(0, 6).map((loc) => (
+          <div class="card location-card-teaser">
+            <div class="loc-teaser-header">
+              <h3>{loc.name}</h3>
+              <span class="badge badge-accent">{loc.postalCode}</span>
+            </div>
+            <p class="loc-teaser-dist">Délai estimé : <strong>{loc.responseTime}</strong></p>
+            <p class="loc-teaser-desc">{loc.description}</p>
+            <a href={`/locations#${loc.id}`} class="loc-link">
+              Consulter le secteur
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center" style="margin-top: 2.5rem;">
+        <a href="/locations" class="btn btn-secondary">
+          Voir toutes les communes et zones desservies
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Avis clients vérifiés</span>
+        <h2>La satisfaction de nos clients à Mons</h2>
+        <p>Découvrez les retours authentiques de propriétaires et locataires ayant fait confiance à Roveo pour leurs dépannages et rénovations sanitaires.</p>
+      </div>
+
+      <div class="grid-3">
+        {reviewsData.slice(0, 3).map((rev) => (
+          <div class="card review-card">
+            <div class="review-stars" aria-label="Note 5 sur 5">
+              {[...Array(rev.rating)].map(() => (
+                <svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              ))}
+            </div>
+            <p class="review-comment">"{rev.comment}"</p>
+            <div class="review-author-info">
+              <strong>{rev.author}</strong>
+              <span>{rev.location}</span>
+              <small class="text-accent">{rev.service}</small>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section section-slate">
+    <div class="container">
+      <div class="section-header">
+        <span class="subtitle">Questions fréquentes</span>
+        <h2>Tout savoir sur nos interventions de plomberie</h2>
+        <p>Les réponses à vos interrogations les plus fréquentes concernant nos délais, notre grille tarifaire et nos prises en charge.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <h4>En combien de temps pouvez-vous intervenir à Mons en cas d'urgence ?</h4>
+          <p>Pour toute fuite d'eau importante, rupture de tuyauterie ou engorgement bloquant, notre équipe de garde est mobilisée pour arriver chez vous en moins de 30 minutes dans le centre de Mons et sous 25 à 35 minutes dans les communes avoisinantes (Cuesmes, Jemappes, Nimy, Havré, Frameries).</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Comment vos tarifs sont-ils calculés ? Y a-t-il des frais imprévus ?</h4>
+          <p>Nos tarifs sont annoncés et validés avec vous avant chaque intervention. Le coût comprend le déplacement, le diagnostic et la main-d'œuvre. Vous recevez un devis clair et précis avant tout commencement de travail. Zéro surprise sur votre facture.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Prenez-vous en charge les dossiers d'assurance pour dégât des eaux ?</h4>
+          <p>Oui. Nos factures et rapports de recherche de fuite sont rédigés selon les normes requises par les compagnies d'assurance belges et françaises. Nous précisons la cause exacte, l'origine de l'infiltration et les travaux de sécurisation effectués pour faciliter votre indemnisation.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Intervenez-vous également pour les résidents côté français ?</h4>
+          <p>Absolument. En raison de notre proximité géographique immédiate avec la frontière, nous couvrons régulièrement le secteur de Maubeuge, Bavay, Jeumont et le sud de Valenciennes pour des dépannages d'urgence ou des installations sur devis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Callout -->
+  <section class="final-cta-section">
+    <div class="container text-center">
+      <h2>Besoin d'un dépannage immédiat ou d'un devis pour votre salle de bain ?</h2>
+      <p>Nos artisans plombiers sont prêts à intervenir à Mons dès maintenant.</p>
+      <div class="final-cta-buttons">
+        <a href={`tel:${companyInfo.phone}`} class="btn btn-emergency btn-hero">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Appeler le {companyInfo.phoneDisplay}
+        </a>
+        <a href="/contact" class="btn btn-outline-white btn-hero">
+          Envoyer un message en ligne
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero Styles */
+  .hero-section {
+    position: relative;
+    padding: 5rem 0 6rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    overflow: hidden;
+  }
+
+  .hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .shape-1 {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(2, 132, 199, 0) 70%);
+    border-radius: 50%;
+  }
+
+  .shape-2 {
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.06) 0%, rgba(234, 88, 12, 0) 70%);
+    border-radius: 50%;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badges-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 640px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-hero {
+    padding: 1rem 1.85rem;
+    font-size: 1rem;
+  }
+
+  .hero-trust-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.75rem;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .trust-item svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  /* Hero Stats Panel */
+  .hero-stats-panel {
+    display: flex;
+    justify-content: center;
+  }
+
+  .stats-card-main {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    position: relative;
+  }
+
+  .stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pulse-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border-radius: 50%;
+  }
+
+  .pulse-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #15803d;
+    text-transform: uppercase;
+  }
+
+  .stats-zone {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .stats-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .metric-box {
+    background-color: var(--color-bg-slate);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #edf2f7;
+  }
+
+  .metric-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+  }
+
+  .metric-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+    display: block;
+  }
+
+  .stats-urgent-callout {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .urgent-callout-icon {
+    color: var(--color-emergency);
+    background: #ffffff;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .urgent-callout-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: #9a3412;
+  }
+
+  /* Emergency Strip */
+  .emergency-strip {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .emergency-strip-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .strip-item svg {
+    color: #38bdf8;
+    flex-shrink: 0;
+  }
+
+  /* Service Preview Card */
+  .service-preview-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .service-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-card-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card-desc {
+    font-size: 0.925rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .service-card-meta {
+    background-color: var(--color-bg-slate);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+
+  .meta-label {
+    color: var(--color-text-muted);
+  }
+
+  .meta-value {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-accent);
+  }
+
+  .service-link:hover {
+    color: var(--color-accent-hover);
+    transform: translateX(4px);
+  }
+
+  /* Feature Box */
+  .feature-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .feature-box:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(2, 132, 199, 0.2);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-box h4 {
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-box p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Location Card Teaser */
+  .location-card-teaser {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loc-teaser-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .loc-teaser-dist {
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .loc-teaser-desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .loc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-accent);
+  }
+
+  /* Reviews */
+  .review-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .review-comment {
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .review-author-info {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .review-author-info strong {
+    color: var(--color-primary);
+  }
+
+  .review-author-info span {
+    color: var(--color-text-muted);
+  }
+
+  /* FAQ */
+  .faq-container {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 1.75rem;
+  }
+
+  .faq-item h4 {
+    margin-bottom: 0.65rem;
+    font-size: 1.15rem;
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Final CTA */
+  .final-cta-section {
+    background: linear-gradient(135deg, #0b1528 0%, #162444 100%);
+    color: #ffffff;
+    padding: 5rem 0;
+  }
+
+  .final-cta-section h2 {
+    color: #ffffff;
+    max-width: 750px;
+    margin: 0 auto 1rem auto;
+  }
+
+  .final-cta-section p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .final-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 960px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-badges-row,
+    .hero-cta-group {
+      justify-content: center;
+    }
+    .hero-trust-bar {
+      grid-template-columns: 1fr;
+    }
+    .trust-item {
+      justify-content: center;
+    }
+    .hero-stats-panel {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+</style>
